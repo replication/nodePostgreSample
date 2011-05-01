@@ -1,0 +1,61 @@
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<script>
+  window.onload = function() {
+    if(!document.getElementById("dataTable")) {
+      document.getElementById("update").disabled = true;
+      document.getElementById("delete").disabled = true;
+    }
+  }
+  function create1() {
+    document.getElementById("action").value = "create";
+    document.getElementById("frm").submit();
+  }
+  function update1() {
+    document.getElementById("action").value = "update";
+    document.getElementById("frm").submit();
+  }
+  function delete1() {
+    document.getElementById("action").value = "delete";
+    document.getElementById("frm").submit();
+  }
+  function search1() {
+    document.getElementById("action").value = "search";
+    document.getElementById("frm").submit();
+  }
+  function refresh1() {
+    document.getElementById("action").value = "refresh";
+    document.getElementById("frm").submit();
+  }
+</script>
+<form action="/" method="POST" id="frm">
+<legend>Sample Form</legend>
+<fieldset>
+<input type="text" id="text" name="text">
+<input type="button" id="search" name="search" value="検索" onclick="search1();">
+<input type="button" id="create" name="create" value="新規登録" onclick="create1();">
+<input type="button" id="update" name="update" value="更新" onclick="update1();">
+<input type="button" id="delete" name="delete" value="削除" onclick="delete1();">
+<input type="button" id="refresh" name="refresh" value="再表示" onclick="refresh1();">
+<input type="hidden" id="action" name="action" value="">
+</fieldset>
+
+<br>
+
+<% if(data.length > 0) {%>
+	<table border="1" id="dataTable">
+	<tr><th></th><th>id</th><th>name</th></tr>
+<% } %>
+
+<% for(var i=0, len=data.length; i<len; i++) {%>
+	<% if(i === 0) {%>
+	<tr><td><input type="radio" id="<%= data[i].id %>" name="selected" value="<%= data[i].id %>" checked></td><td><%= data[i].id %></td><td><%= data[i].name %></td></tr>
+	<% } else {%>
+	<tr><td><input type="radio" id="<%= data[i].id %>" name="selected" value="<%= data[i].id %>"></td><td><%= data[i].id %></td><td><%= data[i].name %></td></tr>
+	<% }%>
+<% }%>
+
+<% if(data.length > 0) {%>
+</table>
+<% } %>
+</form>
