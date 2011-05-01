@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -27,7 +26,7 @@ app.configure('production', function(){
 });
 
 var pg = require('pg').native;
-var connectionString = "tcp://postgres:postgres@localhost:5432/postgres";
+var connectionString = "tcp://ユーザID:パスワード@localhost:5432/データベース名";
 var action;
 var text;
 var selected;
